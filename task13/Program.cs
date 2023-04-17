@@ -7,59 +7,55 @@
 // 78 -> третьей цифры нет
 
 // 32679 -> 6
+main();
+
+void main()
+{
+    bool isWorking = true;
+
+    while (isWorking)
+    {
+        Console.WriteLine("input task number");
+        string task = Console.ReadLine();
+        switch (task)
+        {
+            case "exit": isWorking = false; break;
+            case "13": Task1(); break;
+            default:
+                break;
+        }
+    }
+}
+
+void Task1()
+{
+	int number = ReadInt();
+	if (number>99 || number < -99) 
+	{
+		Console.WriteLine(GetThirdDigit(number));
+	}
+	else Console.WriteLine("third digits no");
+}
 
 
-// Main();
+int GetThirdDigit(int number)
+{
+	while (number >=1000) number /= 10;
+	int ThirdDigit = Math.Abs (number % 10);
+	return ThirdDigit;
+}
 
-// void Main()
-// {
-// 	bool isWorking = true;
 
-// 	while (isWorking)
-// 	{
-// 		Console.WriteLine("Input task");
+int ReadInt()
+{
+	int number;
 
-// 		string task = Console.ReadLine();
+	Console.Write($"Input number:");
 
-// 		switch (task)
-// 		{
-// 			case "exit": isWorking = false; break;
-// 			case "t1": Task1(); break;
-// 			default:
-// 				break;
-// 		}
-// 	}
-// }
+	while (!int.TryParse(Console.ReadLine() , out number))
+	{
+		Console.WriteLine("It's not a number!");
+	}
 
-// void Task1()
-// {
-// 	int a = ReadInt("a");
-// 	int b = ReadInt("b");
-// 	int less = a;
-
-// 	if (IsMoreThen(a, b))
-// 	{
-// 		less = b;
-// 	}
-
-// 	Console.WriteLine(less);
-// }
-
-// int ReadInt(string argument)
-// {
-// 	int number;
-
-// 	Console.Write($"Input {argument}:");
-
-// 	while (!int.TryParse(Console.ReadLine() , out number))
-// 	{
-// 		Console.WriteLine("It's not a number!");
-// 	}
-
-// 	return number;
-// }
-
-// bool IsMoreThen(int a, int b)
-// {
-// 	return a > b;
-// }
+	return number;
+}
