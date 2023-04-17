@@ -4,42 +4,48 @@
 // 7 -> да
 // 1 -> нет
 
-Main();
+main();
 
-void Main() 
+void main()
 {
-    bool Work = true;
-    while (Work)
-    {
-        System.Console.WriteLine("Решаем задачу? Введите y/n.");
-        string a = System.Console.ReadLine();
-        switch (a) 
-        {
-            case "y":task1();break;
-            case "n": Work = false; break;
-        }
+    bool isWorking = true;
 
+    while (isWorking)
+    {
+        Console.WriteLine("input task number");
+        string task = Console.ReadLine();
+        switch (task)
+        {
+            case "exit": isWorking = false; break;
+            case "15": Console.WriteLine("is it a day off?"); task1();break;
+            default:
+                break;
+        }
     }
 }
 
 void task1()
 {
-    System.Console.WriteLine("1 порог");
-    int num1 = int.Parse(Console.ReadLine());
-    System.Console.WriteLine("2 порог");
-    int num2 = int.Parse(Console.ReadLine());
-    int number = GetRandom(num1, num2);
-    System.Console.WriteLine($"Рандомное число - {number}");
-    System.Console.WriteLine($"Наибольшая цифра - {FindTheBig(number)}");
+    Console.WriteLine(IsdayOff(ReadInt()));
 }
-int GetRandom (int num1, int num2)
+
+
+int ReadInt()
 {
-    return new Random().Next(num1, num2+1 );
+    int number ;
+
+    Console.WriteLine("enter the day number of the week");
+
+    while (!int.TryParse(Console.ReadLine() , out number)|| number < 1 || number > 7)
+    {
+    Console.WriteLine("Input does not match the day of the week!");
+    }
+    return number;
 }
-int FindTheBig (int number)
+
+
+bool IsdayOff(int a)
 {
-    int LastNumb = number % 10;
-    int FirstNumb = number / 10;
-    if (LastNumb > FirstNumb) return LastNumb;
-    return FirstNumb;
+    if (a == 6 || a == 7) return true;
+    else return false;
 }
